@@ -3,16 +3,17 @@ pipeline {
 
     environment {
         dockerImage = ''
-        registry = 'bounajia/Search:latest'
+        registry = 'bounajia/search:latest'
         registryCredential = 'dockerhub_id'
     }
 
     stages {
-       stage('checkout') {
-    steps {
-        checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/CBI-DevOps-PFE/Api_search.git']]])
-    }
-
+        stage('checkout') {
+            steps {
+                script {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/CBI-DevOps-PFE/Api_search.git']]])
+                }
+            }
         }
 
         stage('build docker img') {
