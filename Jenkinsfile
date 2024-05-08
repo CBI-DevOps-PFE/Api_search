@@ -3,23 +3,21 @@ pipeline {
 
     environment {
         dockerImage = ''
-        registry = 'bounajia/search:latest'
+        registry = 'bounajia/Search:latest'
         registryCredential = 'dockerhub_id'
     }
 
     stages {
         stage('checkout') {
             steps {
-                script {
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/CBI-DevOps-PFE/Api_search.git']]])
-                }
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/CBI-DevOps-PFE/Api_search.git']]])
             }
         }
 
         stage('build docker img') {
             steps {
                 script {
-                    dockerImage = docker.build(registry, '--build-arg JAR_FILE=target/Api_search.jar .')
+                    dockerImage = docker.build(registry, '--build-arg JAR_FILE=target/search-app.jar .')
                 }
             }
         }
@@ -28,6 +26,7 @@ pipeline {
             steps {
                 script {
                     // Add test commands or scripts here
+                    sh 'echo "Running tests"'
                 }
             }
         }
