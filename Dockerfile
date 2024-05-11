@@ -11,4 +11,4 @@ COPY . .
 EXPOSE 8083
 
 # Command to run the application when the container starts
-CMD ["java", "-jar", "SearchHotel-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "SearchHotel.jar"]
