@@ -5,7 +5,7 @@ FROM openjdk:17-oracle
 WORKDIR /app
 
 # Copy the packaged Spring Boot application JAR file into the container
-COPY target/SearchHotel.jar SearchHotel.jar
+ADD target/SearchHotel.jar SearchHotel.jar
 
 # Expose the port your application runs on
 EXPOSE 8083
