@@ -14,7 +14,7 @@ pipeline {
         stage('checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/CBI-DevOps-PFE/Api_search.git']]])
-                sh 'mvn clean install --file pom.xml'
+//                 sh 'mvn clean install --file pom.xml'
             }
         }
 
