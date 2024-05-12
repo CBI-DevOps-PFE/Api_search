@@ -23,7 +23,7 @@ pipeline {
                 script {
                     // Build Docker image and tag it with the Docker image name
 //                     dockerImage = docker.build(registry.toLowerCase(), "--build-arg JAR_FILE=/app/target/Login.jar .")
-                       sh 'docker build -t bounajia/Search:latest .'
+                       sh 'docker build -t bounajia/search:latest .'
                 }
             }
         }
