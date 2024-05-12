@@ -1,5 +1,5 @@
 # Use an OpenJDK 17 base image
-FROM openjdk:8-oracle
+FROM openjdk:17-oracle
 
 # Set the working directory inside the container
 WORKDIR /app
