@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    tools{
+         maven 'Maven'
+    }
     environment {
         dockerImage = ''
         registry = 'bounajia/Search:latest'
@@ -11,14 +14,17 @@ pipeline {
         stage('checkout') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/CBI-DevOps-PFE/Api_search.git']]])
+                sh 'mvn clean install'
             }
         }
 
         stage('build docker img') {
             steps {
                 script {
-                  dockerImage = docker.build(registry.toLowerCase(), "--build-arg JAR_FILE=/app/target/Login.jar .")
-              }
+                    // Build Docker image and tag it with the Docker image name
+//                     dockerImage = docker.build(registry.toLowerCase(), "--build-arg JAR_FILE=/app/target/Login.jar .")
+                       sh 'docker build -t bounajia/Search:latest .'
+                }
             }
         }
 
@@ -34,6 +40,7 @@ pipeline {
         stage('uploading img') {
             steps {
                 script {
+                    // Push Docker image to Docker registry
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push()
                     }
