@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         dockerImage = ''
-        registry = 'bounajia/Search:latest'
+        registry = 'bounajia/search:latest'
         registryCredential = 'dockerhub_id'
     }
 
