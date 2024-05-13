@@ -39,7 +39,7 @@ pipeline {
                 script {
                     // Pousser l'image Docker vers le registre Docker
                     docker.withRegistry('', registryCredential) {
-                        dockerImage.push()
+                         sh 'docker push bounajia/search:latest '
                     }
                 }
             }
