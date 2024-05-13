@@ -12,3 +12,9 @@ EXPOSE 8083
 
 # Command to run the application when the container starts
 CMD ["java", "-jar", "/SearchHotel.jar"]
+
+
+
+
+
+
